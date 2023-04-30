@@ -58,7 +58,7 @@ input, button {
     document.getElementById("downloadBtn").hidden = false;
 
     //hit a post api to save the data
-    fetch("http://localhost:3000/participants", {
+    fetch("https://iba-convocation.herokuapp.com/participants", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
