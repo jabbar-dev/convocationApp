@@ -2,7 +2,7 @@
 // check if user is already logged in
 if (localStorage.getItem('username') !== 'jabbar') {
     // if not, redirect to login page
-    window.location.replace('./login.html');
+    window.location.replace('./index.html');
   }
   
   // Add your JavaScript code here
