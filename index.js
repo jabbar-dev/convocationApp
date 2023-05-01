@@ -17,7 +17,7 @@ if (localStorage.getItem('username') !== 'jabbar') {
   // logout button functionality
   document.getElementById("logoutBtn").addEventListener("click", function () {
     localStorage.removeItem('username');
-    window.location.replace('./login.html');
+    window.location.replace('./index.html');
   });
   
 
