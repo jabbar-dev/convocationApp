@@ -1,91 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
-    <style>
-       body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-input, button {
-    margin-top: 10px;
-}
-
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIBA Convocation App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>QR Code Generator</h1>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    <br>
-    <label for="id">ID:</label>
-    <input type="text" id="id" name="id">
-    <br>
-    <button id="generateBtn">Generate QR Code</button>
-    <br>
-    <div id="qrcode"></div>
-    <br>
-    <button id="downloadBtn" hidden>Download QR Code</button>
+<body style="background: #eceaea;">
 
-    <script>
-        // Add your JavaScript code here
-        document.getElementById("generateBtn").addEventListener("click", function () {
-    const name = document.getElementById("name").value;
-    const id = document.getElementById("id").value;
+    <div class="container">
+        <div class="row">
+            <div class="col" style="text-align: center; margin: 10px; border-radius: 10px; padding: 10px;  background-color: rgb(255, 255, 255);">
+                <h1>Sukkur IBA Convocation 2023</h1>
+            </div>
+            </div>
+            </div>
+  <div class="container" style="background-color: white; border-radius: 10px; padding: 50px;">
+    <div class="row ">
+      <div class="col-md-4 offset-md-4">
+        <form>
+          
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <button type="submit" class="btn btn-outline-dark btn-block">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-    if (name === "" || id === "") {
-        alert("Please enter both name and ID.");
-        return;
-    }
-
-    const data = JSON.stringify({ name: name, id: id });
-
-    const qrcodeContainer = document.getElementById("qrcode");
-    qrcodeContainer.innerHTML = ""; // Clear the container
-
-    const qrCode = new QRCode(qrcodeContainer, {
-        text: data,
-        width: 128,
-        height: 128,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H,
-    });
-
-    document.getElementById("downloadBtn").hidden = false;
-
-    //hit a post api to save the data
-    fetch("https://iba-convocation.herokuapp.com/participants", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: data,
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log("Success:", data);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-
-});
-
-document.getElementById("downloadBtn").addEventListener("click", function () {
-    const canvas = document.querySelector("#qrcode canvas");
-    const imgDataUrl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-    const link = document.createElement("a");
-    link.href = imgDataUrl;
-    link.download = "QRCode.png";
-    link.click();
-});
-
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
+  <script src="./login.js"></script>
 </body>
 </html>
