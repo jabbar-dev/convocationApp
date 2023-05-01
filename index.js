@@ -27,6 +27,7 @@ let holdName = "";
 document.getElementById("generateBtn").addEventListener("click", function () {
 const name = document.getElementById("name").value;
 const id = document.getElementById("id").value;
+const status = document.getElementById("status");
 holdName = name;
 
 if (name === "" || id === "") {
@@ -67,9 +68,13 @@ body: data,
 .then((response) => response.json())
 .then((data) => {
     console.log("Success:", data);
+    status.innerHTML = data.participant.id + " - " + data.participant.name + " added successfully to Database.";
+    status.style = "color: green";
 })
 .catch((error) => {
     console.error("Error:", error);
+    status.innerHTML = "NOT ADDED! Error: Check Internet Connection " + error;
+    status.style = "color: red";
 });
 
 });
